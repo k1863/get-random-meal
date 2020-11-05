@@ -32,7 +32,7 @@ class RandomMeal extends React.Component {
       });
   }
 
-  // ........................get ingredients with their respective measures..............
+  // ........................Get ingredients with their respective measures..............
   getIngredients(meals) {
     meals.forEach((meal) => {
       const mealEntries = Object.entries(meal),
@@ -64,7 +64,7 @@ class RandomMeal extends React.Component {
             finalMeasures: [],
           }
         ),
-       // zip both arrays
+        // zip both arrays
         ingredientsWithMeasures = finalIngredients.map((value, index) => [
           finalMeasures[index],
           value,
@@ -97,7 +97,7 @@ class RandomMeal extends React.Component {
     ));
 
     return (
-      // .......................Initial component..................................
+      // .......................Home component..................................
       <div id="meal-container" className="container">
         <div
           style={{ color: "#4e413b" }}
@@ -105,11 +105,11 @@ class RandomMeal extends React.Component {
         >
           <h1
             style={{ fontSize: "3rem" }}
-            className="font-weight-bold font-italic"
+            className="font-weight-bold font-italic heading-primary"
           >
             Feeling Hungry?
           </h1>
-          <p style={{ fontSize: "1.5rem" }}>
+          <p className="heading-primary-sub" style={{ fontSize: "1.5rem" }}>
             Get a random meal by clicking here
           </p>
           <button
@@ -128,21 +128,21 @@ class RandomMeal extends React.Component {
             </span>
           </button>
         </div>
-        {/* .........................Print Random Meal on DOM with all its details.................. */}
+        {/* .........................Render Random Meal on DOM with all its details.................. */}
         {this.state.showComponent ? (
           <div>
             {meals.map((meal) => (
               <div className="font-italic" key={meal.idMeal}>
-                <div className="d-flex flex-row justify-content-center mt-5">
-                  <div className="food-img ">
-                    <div className="mr-5">
+                <div className="d-flex flex-column justify-content-center mt-5 d-sm-flex flex-sm-row">
+                  <div className="food-img mr-sm-5">
+                    <div>
                       <img
-                        style={{ width: "400px", borderRadius: "15px" }}
+                        style={{ width: "100%", borderRadius: "15px" }}
                         src={meal.strMealThumb}
                         alt="food-img"
                       />
                     </div>
-                    <div className="font-italic ingredients mt-3">
+                    <div className="ingredients-box font-italic ingredients mt-5">
                       <h5>
                         <span className="font-weight-bold">Category:</span>{" "}
                         {meal.strCategory}
@@ -155,15 +155,20 @@ class RandomMeal extends React.Component {
                       <ul>{listItems}</ul>
                     </div>
                   </div>
-                  <div style={{ width: "800px" }}>
-                    <h2 className="font-weight-bold font-italic">
+                  <div
+                    className="meal-instructions-box"
+                    style={{ width: "90%" }}
+                  >
+                    <h2 className="meal-title-header font-weight-bold font-italic">
                       {meal.strMeal}
                     </h2>
                     <p>{meal.strInstructions}</p>
                   </div>
                 </div>
                 <div className="d-flex flex-column ">
-                  <h5 className="font-weight-bold">Video Recipe</h5>
+                  <h5 className="font-weight-bold video-header">
+                    Video Recipe
+                  </h5>
                   <div
                     className="video"
                     style={{
@@ -183,7 +188,9 @@ class RandomMeal extends React.Component {
                         width: "100%",
                         height: "100%",
                       }}
-                      src={`https://www.youtube.com/embed/${meal.strYoutube.slice(-11)}`}
+                      src={`https://www.youtube.com/embed/${meal.strYoutube.slice(
+                        -11
+                      )}`}
                     ></iframe>
                   </div>
                 </div>
